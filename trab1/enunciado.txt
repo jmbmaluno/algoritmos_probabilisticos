@@ -1,0 +1,37 @@
+Trab 1 - Algoritmos probabilisticos
+
+Implementar os algoritmos de dois métodos probabilísticos:
+
+1) Todo grafo G com pesos nas arestas possui um subgrafo bipartido com metado do peso total
+
+2) Todo grafo G com n vértices e m <= n*d/2 tem o maior conjunto independente de G >= n/2*d
+
+Para 1):
+
+- Implementar um gerador de grafo G(n,p) 
+				  |
+				  -> grafo G com n vértices e cada par de vértices tem propabilidade p de ser vizinhos.
+
+- Dar um valor aleatório [0,1] de peso para cada aresta do grafo G(n,p)
+
+- Usar o algoritmo 1) 5 vezes e guardar o maior peso total para n
+
+- Aumentar o valor de n e gerar novamente o maior peso total. (Fazer isso umas 5 vezes)
+
+- Plotar um gráfico com eixo y sendo o peso total do grafo bipartido e o eixo x sendo o número de n
+
+
+Para 2):
+
+- Permitir a escolha do valor de d para que m = n/2 * d
+
+- Implementar um gerador de grafo G(n,m)
+			            |
+				    -> grafo G com n vértices e sortear um par de vértices e torná-los vizinhos 
+				    até que hajam m arestas no grafo
+
+- Usar o algortimo 2) 5 vezes e guardar o maior conjunto independente para n
+
+- Aumentar o valo de n e gerar novamento o maior conjunto independente. (fazer isso umas 5 vezes)
+
+- Plotar um gráfico com eixo y sendo o tamanho do maior conjunto independente de garfo e o eixo x sendo o número de n
