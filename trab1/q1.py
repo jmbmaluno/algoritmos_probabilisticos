@@ -21,8 +21,9 @@ class Gnp:
                     #Como o grafo não é direcionado
                     #O valor da adjancencia de i para j deve ser igual
                     #ao valor de j para i
-                    self.matriz_adjacencia[i][j] = 1
-                    self.matriz_adjacencia[j][i] = 1
+                    x = random()
+                    self.matriz_adjacencia[i][j] = x
+                    self.matriz_adjacencia[j][i] = x
                     self.m = self.m + 1
                     
     def imprimir_matriz(self):
@@ -30,67 +31,58 @@ class Gnp:
 
 
     def existe_aresta(self, i, j):
-        return (self.matriz_adjacencia[i][j] == 1)
+        return (self.matriz_adjacencia[i][j] > 0)
+
+    def valor_aresta(self, i, j):
+        return self.matriz_adjacencia[i][j]
     
-    def apagar_aresta(self, i, j):
-        self.matriz_adjacencia[i][j] = 0
-        self.matriz_adjacencia[j][i] = 0
-
-    def criar_aresta(self, i, j):
-        self.matriz_adjacencia[i][j] = 1
-        self.matriz_adjacencia[j][i] = 1
-
     def qtde_arestas(self):
         return self.m
 
     def qtde_vertices(self):
         return self.n
 
+    def peso_total(self):
+        soma = 0
+        for i in range (self.n):
+            for j in range(i+1, self.n):
+                soma = soma + self.valor_aresta(i,j)
+
+        return soma
+
 
 
 #Encontrar o maior subconjunto bipartido de G
 #Teorema é que existe um subgrafo bipartido de G que tenha m/2 arestas
-def subgrafo_bipartido_grande(G):
+def peso_subgrafo_bipartido_grande(G):
+    peso = 0
+    n = G.qtde_vertices()
     a = []
     b = []
-    n = G.qtde_vertices()
 
     for i in range(n):
-        if(randint(1,2) == 1):
+        if(randint(0,1) == 0):
             a.append(i)
         else:
             b.append(i)
     
-    x = 0
+    print("lista a: ", a)
+    print("lista b: ", b)
+
     for i in range(n):
-        for j in range(i+1, n):
-            if G.existe_aresta(i,j) and ((a.count(i) == 1 and b.count(j) == 1) or (a.count(j) == 1 and b.count(i) == 1)):
-                x = x + 1
-    
-    return x
+        for j in range(i+1,n):
+            if a.count(i) == 1 and b.count(j) == 1 or a.count(j) == 1 and b.count(i) == 1:
+                peso = peso + G.valor_aresta(i,j)
 
+    print("peso do subgrafo: ", peso)
 
-def grafico_gnp(k, n, p):
-    X = np.zeros(k)
-    M = np.zeros(k)
-    maior = 0 
-
-    for i in range(k):
-        g = Gnp(n,p)
-        M[i] = g.qtde_arestas()
-
-        for j in range(5):
-            aux = subgrafo_bipartido_grande(g)
-            if aux > maior:
-                maior = aux
-
-        X[i] = maior
-
-    plt.plot(M,X)
+    """
+    plt.title("Subgrafo Bipartido Grande")
+    plt.scatter(M,X, color = 'r')
     plt.grid(True)
-    plt.ylabel("Qtde de arestas do subgrafo bipartido de G")
-    plt.xlabel("Qtde de arestas de G")
-    plt.show()
+    plt.ylabel("Peso total no subgrafo bipartido de G")
+    plt.xlabel("Peso total de G")
+    plt.show() """
 
 
 """
