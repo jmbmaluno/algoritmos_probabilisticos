@@ -11,14 +11,14 @@ class Gnp:
         self.n = n
         self.m = 0
         
-        #Percorre a matriz e para par de vértice
-        #Escolhe numa propabilidade p se esses dois vértices serão vizinhos
+        #Percorre a matriz e para par de vertice
+        #Escolhe numa propabilidade p se esses dois vertices serao vizinhos
         for i in range(n):
             for j in range(i+1,n):
 
                 if randint(1,p**-1) == 1:
 
-                    #Como o grafo não é direcionado
+                    #Como o grafo nao e direcionado
                     #O valor da adjancencia de i para j deve ser igual
                     #ao valor de j para i
                     x = random()
@@ -53,7 +53,7 @@ class Gnp:
 
 
 #Encontrar o maior subconjunto bipartido de G
-#Teorema é que existe um subgrafo bipartido de G que tenha m/2 arestas
+#Teorema diz que existe um subgrafo bipartido de G que tenha m/2 arestas
 def peso_subgrafo_bipartido_grande(G):
     peso = 0
     n = G.qtde_vertices()
