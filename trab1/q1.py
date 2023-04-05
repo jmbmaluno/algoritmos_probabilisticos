@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from random import random, randint
 
@@ -66,16 +65,13 @@ def peso_subgrafo_bipartido_grande(G):
         else:
             b.append(i)
     
-    print("lista a: ", a)
-    print("lista b: ", b)
-
     for i in range(n):
         for j in range(i+1,n):
             if a.count(i) == 1 and b.count(j) == 1 or a.count(j) == 1 and b.count(i) == 1:
                 peso = peso + G.valor_aresta(i,j)
 
-    print("peso do subgrafo: ", peso)
-
+    return peso
+    
     """
     plt.title("Subgrafo Bipartido Grande")
     plt.scatter(M,X, color = 'r')

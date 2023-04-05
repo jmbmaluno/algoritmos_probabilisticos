@@ -3,20 +3,26 @@ from random import randint
 
 class Gnm:
 
-    def __init__(self,n,m):
+    def __init__(self,n,d):
         self.matriz_adjacencias = np.zeros((n,n))
-        self.m = m
         self.n = n
+        self.d = d
+        self.m = n/2 * d 
+        self.valido = True
+        
+        if self.m <= (n*n -n)/2:
+            aux = self.m
+            while aux > 0 :
+                i = randint(0,n-1)
+                j = randint(0,n-1)
 
-        aux = m
-        while aux > 0 :
-            i = randint(0,n-1)
-            j = randint(0,n-1)
-
-            if i != j:
-                self.matriz_adjacencias[i][j] = 1
-                self.matriz_adjacencias[j][i] = 1
-                aux = aux - 1
+                if i != j:
+                    self.matriz_adjacencias[i][j] = 1
+                    self.matriz_adjacencias[j][i] = 1
+                    aux = aux - 1
+        else:
+            print("d é um valor muito grande para n\n")
+            self.m = 0
 
     def sao_vizinhos(self,v,u):
         return self.matriz_adjacencias[v][u] == 1
@@ -28,7 +34,7 @@ class Gnm:
         print(self.matriz_adjacencias)
     
 #Retorna o vértice de maior grau do conjunto a
-def maior_grau_conjunto(G,a):
+def maior_grau_conjunto(g,a):
 
     k = len(a)
     v = [0] * k
@@ -50,7 +56,7 @@ def maior_grau_conjunto(G,a):
     return maior_vertice
 
 #retorna True se o conjunto a é um conjunto independente de G
-def conjunto_eh_independente(G,a):
+def conjunto_eh_independente(g,a):
 
     k = len(a)
 
@@ -63,9 +69,9 @@ def conjunto_eh_independente(G,a):
 
 
 #retorna o tamanho do maior conjunto independente de G
-def conjunto_independente_grande(G,d):
+def conjunto_independente_grande(G):
     a = []
-    
+    d = G.d
     for i in range(G.ordem()):
         if(randint(1,d) == 1):
             a.append(i)
@@ -79,23 +85,19 @@ def conjunto_independente_grande(G,d):
 
     
 
-
+"""
 #------MAIN------#
-
-d = 10
-n = 100
-m = n/2 * d
 
 #Testando se m ultrapassa o limete maximo de arestas para n vertices
 if m > (n*n - n)/2:
     print("m muito grande")
 
 else:
-    g = Gnm(n,m)
+    g = Gnm(n,d)
 
     g.imprimir_matriz()
 
-    conjunto_independente_grande(g,d)
+    conjunto_independente_grande(g)
     
     print(n/(2*d))
-
+"""
