@@ -1,23 +1,16 @@
-from q1 import *
-from q2 import *
+from graficos import plotar_grafo_q1, plotar_grafo_q2
 
+print("1° Trabalho - Algoritmos Probabilísticos")
+print("Q1 - Maior Peso do subgrafo bipartido")
+print("-- A função implementada recebe um valor k de vértices para criação do grafo Gnp")
+print("--Calcula o maior peso do subgrafo bipartido")
+print("--Esse processo é feito de k até k+70 com paço 10")
 
-n = 100
-d = 10
+k = int(input("Entre a quantidade de vértices: "))
 
-g = Gnm(n,d)
+plotar_grafo_q1(k)
 
-g.imprimir_matriz()
+print("\n\n Q2 - Maior conjunto independente")
+k = int(input("Entre a quantidade de vértices: "))
 
-conjunto_independente_grande(g)
-
-print(n/(2*d))
-
-"""
-g = Gnp(5,1/2)
-
-g.imprimir_matriz()
-
-print("peso total de g: ", g.peso_total())
-
-peso_subgrafo_bipartido_grande(g)"""
+plotar_grafo_q2(k)
