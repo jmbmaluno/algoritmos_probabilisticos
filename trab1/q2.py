@@ -81,7 +81,7 @@ def conjunto_independente_grande(G):
         v = maior_grau_conjunto(G,a)
         a.pop(v)
 
-    print(len(a))
+    return (len(a))
 
     
 
